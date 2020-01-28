@@ -35,7 +35,7 @@ var generateInteger = function (min, max) {
 var generatePictures = function (numberOfPictures) {
   var pictures = [];
   for (var i = 0; i < numberOfPictures; i++) {
-    var photo = {
+    var photoContent = {
       url: 'photos/' + (1 + i) + '.jpg',
       description: PHOTOS_DESCRIPTIONS[getRandomInt(PHOTOS_DESCRIPTIONS)],
       likes: generateInteger(15, 200),
@@ -52,18 +52,18 @@ var generatePictures = function (numberOfPictures) {
         }
       ]
     };
-    pictures.push(photo);
+    pictures.push(photoContent);
   }
   return pictures;
 };
 
 
 var creaturePictures = function (array) {
-  var wizardElement = similarPictureTemplate.cloneNode(true);
-  wizardElement.querySelector('.picture__img').src = array.url;
-  wizardElement.querySelector('.picture__likes').textContent = array.likes;
-  wizardElement.querySelector('.picture__comments').textContent = array.comments.length;
-  return wizardElement;
+  var pictureElement = similarPictureTemplate.cloneNode(true);
+  pictureElement.querySelector('.picture__img').src = array.url;
+  pictureElement.querySelector('.picture__likes').textContent = array.likes;
+  pictureElement.querySelector('.picture__comments').textContent = array.comments.length;
+  return pictureElement;
 };
 
 
