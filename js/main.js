@@ -41,7 +41,7 @@ var generatePictures = function (numberOfPictures) {
       likes: generateInteger(15, 200),
       comments: [
         {
-          avatar: 'img/avatar-' + generateInteger(15, 200) + '.svg',
+          avatar: 'img/avatar-' + generateInteger(1, 6) + '.svg',
           message: COMMENTS[getRandomInt(COMMENTS)] + ' ' + COMMENTS[getRandomInt(COMMENTS)],
           name: NAMES[getRandomInt(NAMES)]
         },
