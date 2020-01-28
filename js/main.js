@@ -22,8 +22,8 @@ var similarPictureTemplate = document.querySelector('#picture').
 content.querySelector('.picture');
 
 
-var getRandomInt = function (arr) {
-  return Math.floor(Math.random() * arr.length);
+var getRandomInt = function (array) {
+  return Math.floor(Math.random() * array.length);
 };
 
 
@@ -32,10 +32,10 @@ var generateInteger = function (min, max) {
 };
 
 
-var getPictures = function (numberOfPictures) {
+var generatePictures = function (numberOfPictures) {
   var pictures = [];
   for (var i = 0; i < numberOfPictures; i++) {
-    var object = {
+    var photo = {
       url: 'photos/' + (1 + i) + '.jpg',
       description: PHOTOS_DESCRIPTIONS[getRandomInt(PHOTOS_DESCRIPTIONS)],
       likes: generateInteger(15, 200),
@@ -52,29 +52,29 @@ var getPictures = function (numberOfPictures) {
         }
       ]
     };
-    pictures.push(object);
+    pictures.push(photo);
   }
   return pictures;
 };
 
 
-var renderPictures = function (arr) {
+var creaturePictures = function (array) {
   var wizardElement = similarPictureTemplate.cloneNode(true);
-  wizardElement.querySelector('.picture__img').src = arr.url;
-  wizardElement.querySelector('.picture__likes').textContent = arr.likes;
-  wizardElement.querySelector('.picture__comments').textContent = arr.comments.length;
+  wizardElement.querySelector('.picture__img').src = array.url;
+  wizardElement.querySelector('.picture__likes').textContent = array.likes;
+  wizardElement.querySelector('.picture__comments').textContent = array.comments.length;
   return wizardElement;
 };
 
 
-var addPicturesToFragment = function (int) {
+var creatureFragmentWithPictures = function (numberOfPictures) {
   var fragment = document.createDocumentFragment();
-  for (var i = 0; i < getPictures(int).length; i++) {
-    fragment.appendChild(renderPictures(getPictures(int)[i]));
+  for (var i = 0; i < generatePictures(numberOfPictures).length; i++) {
+    fragment.appendChild(creaturePictures(generatePictures(numberOfPictures)[i]));
   }
   return fragment;
 };
 
 
-similarListElement.appendChild(addPicturesToFragment(PHOTOS_NUMBER));
+similarListElement.appendChild(creatureFragmentWithPictures(PHOTOS_NUMBER));
 
