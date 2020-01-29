@@ -22,8 +22,8 @@ var similarPictureTemplate = document.querySelector('#picture').
 content.querySelector('.picture');
 
 
-var getRandomInt = function (array) {
-  return Math.floor(Math.random() * array.length);
+var getRandomElement = function (array) {
+  return array[Math.floor(Math.random() * array.length)];
 };
 
 
@@ -37,18 +37,18 @@ var generatePictures = function (numberOfPictures) {
   for (var i = 0; i < numberOfPictures; i++) {
     var photoContent = {
       url: 'photos/' + (1 + i) + '.jpg',
-      description: PHOTOS_DESCRIPTIONS[getRandomInt(PHOTOS_DESCRIPTIONS)],
+      description: getRandomElement(PHOTOS_DESCRIPTIONS),
       likes: generateInteger(15, 200),
       comments: [
         {
           avatar: 'img/avatar-' + generateInteger(1, 6) + '.svg',
-          message: COMMENTS[getRandomInt(COMMENTS)] + ' ' + COMMENTS[getRandomInt(COMMENTS)],
-          name: NAMES[getRandomInt(NAMES)]
+          message: getRandomElement(COMMENTS) + ' ' + getRandomElement(COMMENTS),
+          name: getRandomElement(NAMES)
         },
         {
           avatar: 'img/avatar-' + generateInteger(15, 200) + '.svg',
-          message: COMMENTS[getRandomInt(COMMENTS)],
-          name: NAMES[getRandomInt(NAMES)]
+          message: getRandomElement(COMMENTS),
+          name: getRandomElement(NAMES)
         }
       ]
     };
@@ -58,23 +58,25 @@ var generatePictures = function (numberOfPictures) {
 };
 
 
-var creaturePictures = function (array) {
+var createPictures = function (picture) {
   var pictureElement = similarPictureTemplate.cloneNode(true);
-  pictureElement.querySelector('.picture__img').src = array.url;
-  pictureElement.querySelector('.picture__likes').textContent = array.likes;
-  pictureElement.querySelector('.picture__comments').textContent = array.comments.length;
+  pictureElement.querySelector('.picture__img').src = picture.url;
+  pictureElement.querySelector('.picture__likes').textContent = picture.likes;
+  pictureElement.querySelector('.picture__comments').textContent = picture.comments.length;
   return pictureElement;
 };
 
 
-var creatureFragmentWithPictures = function (numberOfPictures) {
+var pictures = generatePictures(PHOTOS_NUMBER);
+
+var creatureFragmentWithPictures = function (arrayOfPictures) {
   var fragment = document.createDocumentFragment();
-  for (var i = 0; i < generatePictures(numberOfPictures).length; i++) {
-    fragment.appendChild(creaturePictures(generatePictures(numberOfPictures)[i]));
+  for (var i = 0; i < arrayOfPictures.length; i++) {
+    fragment.appendChild(createPictures(arrayOfPictures[i]));
   }
   return fragment;
 };
 
 
-similarListElement.appendChild(creatureFragmentWithPictures(PHOTOS_NUMBER));
+similarListElement.appendChild(creatureFragmentWithPictures(pictures));
 
