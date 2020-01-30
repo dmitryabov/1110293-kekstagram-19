@@ -80,3 +80,18 @@ var creatureFragmentWithPictures = function (arrayOfPictures) {
 
 similarListElement.appendChild(creatureFragmentWithPictures(pictures));
 
+
+var bigPictureElement = document.querySelector('.big-picture');
+bigPictureElement.classList.remove('hidden');
+
+var qwer = generatePictures(25);
+
+var socialCommentsElement = bigPictureElement.querySelector('.social__comments');
+
+bigPictureElement.querySelector('.big-picture__img').children[0].src = qwer[0].url;
+bigPictureElement.querySelector('.likes-count').textContent = qwer[1].likes;
+bigPictureElement.querySelector('.comments-count').textContent = qwer[1].comments.length;
+socialCommentsElement.children[0].querySelector('.social__picture').src = qwer[1].comments[0].avatar;
+socialCommentsElement.children[0].querySelector('.social__picture').textContent = qwer[1].comments[0].name;
+socialCommentsElement.children[0].querySelector('.social__text').textContent = qwer[1].comments[0].message;
+
