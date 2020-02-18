@@ -1,10 +1,10 @@
 'use strict';
 
 (function () {
+  var ESC_KEY = 'Escape';
   var textHashtags = document.querySelector('.text__hashtags');
   var scaleControlValue = document.querySelector('.scale__control--value');
   var imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
-  var ESC_KEY = 'Escape';
   var bodyElement = document.querySelector('body');
   var fileUpload = document.querySelector('#upload-file');
   var imageEditForm = document.querySelector('.img-upload__overlay');
