@@ -68,7 +68,7 @@
     if (effectLevelLine < MAX_ZOOM_VALUE) {
       effectLevelLine = effectLevelLine + MAX_STEP_VALUE;
       var transformScale = 'scale(' + effectLevelLine / MAX_ZOOM_VALUE + ')';
-      imagePreview.style['transform'] = transformScale;
+      imagePreview.style.transform = transformScale;
       scaleControlValue.value = String(effectLevelLine + '%');
     }
   };
@@ -78,7 +78,7 @@
     if (effectLevelLine > MIN_ZOOM_VALUE) {
       effectLevelLine = effectLevelLine - MAX_STEP_VALUE;
       var transformScale = 'scale(' + effectLevelLine / MAX_ZOOM_VALUE + ')';
-      imagePreview.style['transform'] = transformScale;
+      imagePreview.style.transform = transformScale;
       scaleControlValue.value = String(effectLevelLine + '%');
     }
   };
