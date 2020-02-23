@@ -119,7 +119,7 @@
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
                   <input class="text__hashtags" name="hashtags" placeholder="#хэш-тег">
-                  <textarea class="text__description" name="description" placeholder="Ваш комментарий..."></textarea>
+                  <textarea class="text__description" maxlength="140" name="description" placeholder="Ваш комментарий..."></textarea>
                 </fieldset>
 
                 <!-- Кнопка для отправки данных на сервер -->
@@ -177,7 +177,7 @@
         </div>
 
         <!-- Кнопка для выхода из полноэкранного просмотра изображения -->
-        <button type="reset" class="big-picture__cancel  cancel" id="picture-cancel">Закрыть</button>
+        <button type="reset" class="big-picture__cancel  cancel"  tabindex="1" id="picture-cancel">Закрыть</button>
       </div>
     </section>
   </main>
@@ -232,13 +232,16 @@
   <template id="messages">
     <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>
   </template>
+  <script src="js/levelEffect.js"></script>
+  <script src="js/zoomPicture.js"></script>
   <script src="js/mock.js"></script>
-  <script src="js/pictures.js"></script>
+  <script src="js/createPictures.js"></script>
   <script src="js/bigPicture.js"></script>
   <script src="js/util.js"></script>
   <script src="js/validation.js"></script>
-  <script src="js/filter.js"></script>
+  <script src="js/filterEffect.js"></script>
   <script src="js/dialogControl.js"></script>
-  <script src="js/init.js"></script>
+  <script src="js/bigPictureControl.js"></script>
+  <script src="js/pictures.js"></script>
 </body>
 </html>
