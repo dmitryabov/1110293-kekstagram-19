@@ -1,29 +1,21 @@
 'use strict';
 
 (function () {
-  var similarPictureTemplate = document.querySelector('#picture').
-  content.querySelector('.picture');
+  var PHOTOS_NUMBER = 25;
+  var bigPictureElement = document.querySelector('.big-picture');
+  var commentsElement = bigPictureElement.querySelector('.social__comments');
+  var similarListElement = document.querySelector('.pictures');
 
 
-  var createPicture = function (picture) {
-    var pictureElement = similarPictureTemplate.cloneNode(true);
-    pictureElement.querySelector('.picture__img').src = picture.url;
-    pictureElement.querySelector('.picture__likes').textContent = picture.likes;
-    pictureElement.querySelector('.picture__comments').textContent = picture.comments.length;
-    return pictureElement;
-  };
+  var pictures = window.mock.generatePictures(PHOTOS_NUMBER);
 
+  window.util.removeElement(commentsElement);
 
-  var creatureFragmentWithPictures = function (pictures) {
-    var fragment = document.createDocumentFragment();
-    for (var i = 0; i < pictures.length; i++) {
-      fragment.appendChild(createPicture(pictures[i]));
-    }
-    return fragment;
-  };
+  similarListElement.appendChild(window.createPictures.fragmentWithPictures(pictures));
 
 
   window.pictures = {
-    creatureFragmentWithPictures: creatureFragmentWithPictures
+    add: pictures
   };
+
 })();

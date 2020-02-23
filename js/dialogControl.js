@@ -2,6 +2,8 @@
 
 (function () {
   var ESC_KEY = 'Escape';
+
+  var textВescription = document.querySelector('.text__description');
   var textHashtags = document.querySelector('.text__hashtags');
   var scaleControlValue = document.querySelector('.scale__control--value');
   var imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
@@ -13,7 +15,7 @@
 
 
   var onPopupEscPress = function (evt) {
-    if (evt.key === ESC_KEY && textHashtags !== document.activeElement) {
+    if (evt.key === ESC_KEY && textHashtags !== document.activeElement && textВescription !== document.activeElement) {
       closePopup();
     }
   };
@@ -34,7 +36,7 @@
     bodyElement.classList.remove('modal-open');
     textHashtags.value = '';
     imagePreview.className = 'effects__preview--none';
-    imagePreview.style.transform = 'scale(1)';
+    imagePreview.style['transform'] = 'scale(1)';
   };
 
 

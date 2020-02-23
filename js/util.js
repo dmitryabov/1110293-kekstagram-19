@@ -2,6 +2,7 @@
 
 (function () {
   var ENTER_KEY = 'Enter';
+  var ESCAPE_KEY = 'Escape';
 
   var getRandomElement = function (array) {
     return array[Math.floor(Math.random() * array.length)];
@@ -15,7 +16,13 @@
 
   var onEnterPress = function (evt, action) {
     if (evt.key === ENTER_KEY) {
-      action();
+      action(evt);
+    }
+  };
+
+  var onEscPress = function (evt, action) {
+    if (evt.key === ESCAPE_KEY) {
+      action(evt);
     }
   };
 
@@ -28,6 +35,7 @@
 
 
   window.util = {
+    onEscPress: onEscPress,
     getRandomElement: getRandomElement,
     generateInteger: generateInteger,
     onEnterPress: onEnterPress,
