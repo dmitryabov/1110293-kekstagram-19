@@ -4,21 +4,23 @@
   var closeButton = document.querySelector('#picture-cancel');
   var bigPictureElement = document.querySelector('.big-picture');
   var commentsElement = bigPictureElement.querySelector('.social__comments');
+  // var commentsLoader = bigPictureElement.querySelector('.social__comments-loader');
 
 
   var openBigPicture = function (evt) {
-    if (evt.target.matches('img[data-id]')) {
-      var pictureNumber = evt.target.getAttribute('data-id');
-      commentsElement.appendChild(window.bigPicture.createComment(window.pictures.add[pictureNumber]));
-      window.bigPicture.renderBigPicture(window.pictures.add[pictureNumber]);
-      document.querySelector('.big-picture').classList.remove('hidden');
-    }
+    commentsElement.textContent = '';
+    bigPictureElement.querySelector('.big-picture__img').children[0].src = '';
+    bigPictureElement.querySelector('.big-picture__img').children[0].alt = '';
+    bigPictureElement.querySelector('.likes-count').textContent = '';
+    bigPictureElement.querySelector('.social__comment-count').textContent = '';
+    bigPictureElement.querySelector('.social__caption').textContent = '';
+    window.bigPicture.successLoadHandler(evt);
   };
 
 
   var closeBigPicture = function () {
     document.querySelector('.big-picture').classList.add('hidden');
-    commentsElement.textContent = '';
+
   };
 
 

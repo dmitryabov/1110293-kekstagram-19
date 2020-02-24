@@ -1,21 +1,24 @@
 'use strict';
 
 (function () {
-  var PHOTOS_NUMBER = 25;
   var bigPictureElement = document.querySelector('.big-picture');
   var commentsElement = bigPictureElement.querySelector('.social__comments');
-  var similarListElement = document.querySelector('.pictures');
 
-
-  var pictures = window.mock.generatePictures(PHOTOS_NUMBER);
 
   window.util.removeElement(commentsElement);
 
-  similarListElement.appendChild(window.createPictures.fragmentWithPictures(pictures));
+
+  var URL_DATA = 'https://js.dump.academy/kekstagram/data';
+  var URL = 'https://js.dump.academy/kekstagram';
+
+  window.backend.load(window.callbackFunction.successLoadHandler, window.callbackFunction.errorHandler, URL_DATA, 'GET');
 
 
-  window.pictures = {
-    add: pictures
-  };
+  var form = document.querySelector('.img-upload__form');
+  form.addEventListener('submit', function (evt) {
+    window.backend.load(window.callbackFunction.succesSaveHandler, window.callbackFunction.errorHandler, URL, 'POST', new FormData(form));
+    evt.preventDefault();
+  });
+
 
 })();
