@@ -2,7 +2,6 @@
 
 (function () {
   var MAX_PICTURE_COUNT = 25;
-  var userDialog = document.querySelector('.setup');
   var imgOverlay = document.querySelector('.img-upload__overlay');
   var similarListElement = document.querySelector('.pictures');
   var similarPictureTemplate = document.querySelector('#picture').
