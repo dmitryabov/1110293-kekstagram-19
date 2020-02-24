@@ -4,7 +4,6 @@
   var closeButton = document.querySelector('#picture-cancel');
   var bigPictureElement = document.querySelector('.big-picture');
   var commentsElement = bigPictureElement.querySelector('.social__comments');
-  // var commentsLoader = bigPictureElement.querySelector('.social__comments-loader');
 
 
   var openBigPicture = function (evt) {
