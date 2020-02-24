@@ -11,7 +11,6 @@
 
   imagePreview.classList.add('effects__preview--none');
 
-
   var getPhotoCssEffect = function (evt) {
     if (evt.target.matches('#effect-none')) {
       imagePreview.style.filter = '';
