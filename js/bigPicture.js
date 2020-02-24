@@ -1,14 +1,15 @@
 'use strict';
 
 (function () {
-  var COMMENTS_NUMBER = 2;
   var bigPictureElement = document.querySelector('.big-picture');
+  var commentsElement = bigPictureElement.querySelector('.social__comments');
 
 
   var renderBigPicture = function (picture) {
     bigPictureElement.querySelector('.big-picture__img').children[0].src = picture.url;
     bigPictureElement.querySelector('.likes-count').textContent = picture.likes;
-    bigPictureElement.querySelector('.comments-count').textContent = picture.comments.length;
+
+
     bigPictureElement.querySelector('.social__caption').textContent = picture.description;
   };
 
@@ -23,9 +24,12 @@
   };
 
 
-  var createComment = function (pictures) {
+  var createComment = function (pictures, f, g) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < COMMENTS_NUMBER; i++) {
+    var commentsCount = pictures.comments.slice(f, g);
+    for (var i = 0; i < commentsCount.length; i++) {
+      bigPictureElement.querySelector('.social__comment-count').textContent = commentsCount.length + ' из ' + pictures.comments.length + ' комментариев';
+
       var comment = makeElement('li', 'social__comment');
       var picture = makeElement('img', 'social__picture');
       picture.alt = pictures.comments[i].name;
@@ -42,8 +46,27 @@
   };
 
 
+  var URL_DATA = 'https://js.dump.academy/kekstagram/data';
+
+  var openBigPicture = function (evt) {
+    if (evt.target.matches('img[data-id]')) {
+      var pictureNumber = evt.target.getAttribute('data-id');
+      var successLoadHandler = function (pictures) {
+        renderBigPicture(pictures[pictureNumber]);
+        var fragment = createComment(pictures[pictureNumber], 0, 5);
+        commentsElement.appendChild(fragment);
+      };
+      window.backend.load(successLoadHandler, window.callbackFunction.errorHandler, URL_DATA, 'GET');
+      document.querySelector('.big-picture').classList.remove('hidden');
+
+    }
+  };
+
+
   window.bigPicture = {
     createComment: createComment,
-    renderBigPicture: renderBigPicture
+    renderBigPicture: renderBigPicture,
+    successLoadHandler: openBigPicture
+
   };
 })();
