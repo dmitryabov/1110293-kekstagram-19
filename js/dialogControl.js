@@ -36,6 +36,7 @@
     bodyElement.classList.remove('modal-open');
     textHashtags.value = '';
     imagePreview.className = 'effects__preview--none';
+    imagePreview.style.filter = '';
     imagePreview.style.transform = 'scale(1)';
   };
 
