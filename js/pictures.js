@@ -1,24 +1,37 @@
 'use strict';
 
 (function () {
-  var bigPictureElement = document.querySelector('.big-picture');
-  var commentsElement = bigPictureElement.querySelector('.social__comments');
+  var similarListElement = document.querySelector('.pictures');
+  var similarPictureTemplate = document.querySelector('#picture').
+  content.querySelector('.picture');
 
+  var createPicture = function (picture, count) {
+    var pictureElement = similarPictureTemplate.cloneNode(true);
+    pictureElement.querySelector('.picture__img').src = picture.url;
+    pictureElement.querySelector('.picture__img').dataset.id = count + '';
+    pictureElement.querySelector('.picture__img').dataset.tabindex = count + '';
+    pictureElement.querySelector('.picture__likes').textContent = picture.likes;
+    pictureElement.querySelector('.picture__comments').textContent = picture.comments.length;
+    return pictureElement;
+  };
 
-  window.util.removeElement(commentsElement);
+  var renderPictures = function (pictures, count) {
+    var fragment = document.createDocumentFragment();
+    for (var i = 0; i < count; i++) {
+      fragment.appendChild(createPicture(pictures[i], i));
+    }
+    similarListElement.appendChild(fragment);
+  };
 
+  var removePictures = function () {
+    document.querySelectorAll('.picture').forEach(function (it) {
+      it.remove();
+    });
+  };
 
-  var URL_DATA = 'https://js.dump.academy/kekstagram/data';
-  var URL = 'https://js.dump.academy/kekstagram';
-
-  window.backend.load(window.callbackFunction.successLoadHandler, window.callbackFunction.errorHandler, URL_DATA, 'GET');
-
-
-  var form = document.querySelector('.img-upload__form');
-  form.addEventListener('submit', function (evt) {
-    window.backend.load(window.callbackFunction.succesSaveHandler, window.callbackFunction.errorHandler, URL, 'POST', new FormData(form));
-    evt.preventDefault();
-  });
-
+  window.pictures = {
+    render: renderPictures,
+    remove: removePictures
+  };
 
 })();

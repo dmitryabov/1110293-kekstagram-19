@@ -34,12 +34,47 @@
   };
 
 
+  var shufflesArray = function (array) {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  };
+
+  var makeElement = function (tagName, className, text) {
+    var element = document.createElement(tagName);
+    element.classList.add(className);
+    if (text) {
+      element.textContent = text;
+    }
+    return element;
+  };
+
+
+  var sortArray = function (array) {
+    array.sort(function (first, second) {
+      if (first.comments < second.comments) {
+        return 1;
+      } else if (first.comments > second.comments) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  };
+
+
   window.util = {
     onEscPress: onEscPress,
     getRandomElement: getRandomElement,
     generateInteger: generateInteger,
     onEnterPress: onEnterPress,
-    removeElement: removeElement
+    removeElement: removeElement,
+    shufflesArray: shufflesArray,
+    makeElement: makeElement,
+    sort: sortArray
   };
 
 })();

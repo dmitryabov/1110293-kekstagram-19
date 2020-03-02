@@ -31,7 +31,7 @@
     var effectLevelPosition = (mouseupCoordinate / LINE_WIDTH) * 100;
     effectLevel.style.left = effectLevelPosition + '%';
     effectLevelDepth.style.width = effectLevelPosition + '%';
-    effectLevelInput.value = effectLevelPosition;
+    effectLevelInput.dataset.value = effectLevelPosition;
     changeFilterStyle(effectLevelPosition);
 
   };
