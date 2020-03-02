@@ -34,7 +34,7 @@
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
-              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" required>
+              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" accept="image/*" required>
               <label for="upload-file" class="img-upload__label  img-upload__control">Загрузить</label>
             </fieldset>
 
@@ -232,9 +232,11 @@
   <template id="messages">
     <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>
   </template>
-  <script src="js/errorMessage.js"></script>
-
   <script src="js/debounce.js"></script>
+  <script src="js/filterPictures.js"></script>
+  <script src="js/pictures.js"></script>
+  <script src="js/message.js"></script>
+  <script src="js/errorMessage.js"></script>
   <script src="js/backend.js"></script>
   <script src="js/callbackFunction.js"></script>
   <script src="js/messageControl.js"></script>
@@ -246,6 +248,5 @@
   <script src="js/filterEffect.js"></script>
   <script src="js/dialogControl.js"></script>
   <script src="js/bigPictureControl.js"></script>
-  <script src="js/pictures.js"></script>
 </body>
 </html>

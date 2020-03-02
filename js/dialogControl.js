@@ -2,8 +2,7 @@
 
 (function () {
   var ESC_KEY = 'Escape';
-
-  var textВescription = document.querySelector('.text__description');
+  var textDescription = document.querySelector('.text__description');
   var textHashtags = document.querySelector('.text__hashtags');
   var scaleControlValue = document.querySelector('.scale__control--value');
   var imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
@@ -12,10 +11,11 @@
   var imageEditForm = document.querySelector('.img-upload__overlay');
   var buttonForCloseForm = document.querySelector('#upload-cancel');
   var imagePreview = document.querySelector('.img-upload__preview').querySelector('img');
+  var hashtags = document.querySelector('.text__hashtags');
 
 
   var onPopupEscPress = function (evt) {
-    if (evt.key === ESC_KEY && textHashtags !== document.activeElement && textВescription !== document.activeElement) {
+    if (evt.key === ESC_KEY && textHashtags !== document.activeElement && textDescription !== document.activeElement) {
       closePopup();
     }
   };
@@ -38,27 +38,24 @@
     imagePreview.className = 'effects__preview--none';
     imagePreview.style.filter = '';
     imagePreview.style.transform = 'scale(1)';
+    hashtags.style.border = '';
+    textDescription.value = '';
   };
-
 
   fileUpload.addEventListener('change', function () {
     openPopup();
   });
 
-
   fileUpload.addEventListener('keydown', function (evt) {
     window.util.onEnterPress(evt, openPopup);
   });
-
 
   buttonForCloseForm.addEventListener('click', function () {
     closePopup();
   });
 
-
   fileUpload.addEventListener('keydown', function (evt) {
     window.util.onEnterPress(evt, closePopup);
   });
-
 
 })();
